@@ -254,18 +254,22 @@ class Client:
     def __init__(self, dog_name, df):
         self.dog_name = dog_name
         self.df = df[df['dog name'] == dog_name]
-        self.payment, self.pirot = self.calculate_payment()
+        self.payment, self.pirot, self.total_walks, self.paid_walks = self.calculate_payment()
         # Add number of walks calculation
-        self.total_walks = len(self.df)
         self.walking_dates = self.df['date'].nunique()
         self.walkers = self.df['name'].unique().tolist()
 
     def calculate_payment(self):
         df = self.df
+        # Exclude rows marked as cloud (ענ"ן)
         df = df[df['price to customer'].apply(lambda x: 'ענ"ן' not in str(x))]
-        payment = df['price to customer'].dropna().astype(int).sum()
-        pirot = df['price to customer'].dropna().astype(int).value_counts()
-        return payment, pirot
+        # Coerce to numeric for robust comparisons
+        price_series = pd.to_numeric(df['price to customer'].dropna(), errors='coerce')
+        payment = int(price_series.dropna().sum())
+        pirot = price_series.dropna().astype(int).value_counts()
+        total_walks = len(df)
+        paid_walks = int((price_series > 0).sum())
+        return payment, pirot, total_walks, paid_walks
 
     def display_client(self):
         # Custom CSS for client display
@@ -324,11 +328,10 @@ class Client:
         # Dog Name (Large)
         st.markdown(f"<div class='client-name'>🐕 {self.dog_name}</div>", unsafe_allow_html=True)
 
-        # Walks Information (Large)
+        # Walks Information (Large) — show only paid walks
         st.markdown(f"""
             <div class='walks-info'>
-                Total Walks: {self.total_walks}
-              
+                הולכות בתשלום: {self.paid_walks}
             </div>
         """, unsafe_allow_html=True)
 
@@ -351,6 +354,12 @@ class Client:
                         Price: ₪{price} | Number of Walks: {count}
                     </div>
                 """, unsafe_allow_html=True)
+            # Add total walks line (including unpaid)
+            st.markdown(f"""
+                <div class='pirot-item'>
+                    Total Walks: {self.total_walks}
+                </div>
+            """, unsafe_allow_html=True)
             st.markdown("</div>", unsafe_allow_html=True)
 
         # Dog Walkers List
@@ -480,7 +489,6 @@ def calculate_payments():
     if uploaded_file is None:
         st.info("Upload an Excel file to begin.")
         return
-
     try:
         df = _read_excel(uploaded_file)
     except Exception as exc:
