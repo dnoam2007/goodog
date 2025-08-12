@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+
+# Virtual env
+.venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Data files
+*.xlsx
+*.csv
+*.zip
+.AU.*
+
+# Legacy nested app folder to avoid duplication
+app/
+
