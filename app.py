@@ -410,9 +410,17 @@ class Employee:
         st.markdown("<div class='section-title'>📊 Pirot Information</div>", unsafe_allow_html=True)
         st.markdown("<div class='pirot-section'>", unsafe_allow_html=True)
         if not self.pirot.empty:
-            st.write(self.pirot.to_frame())
+            st.markdown("<div class='activities-container'>", unsafe_allow_html=True)
+            for key, value in self.pirot.items():
+                st.markdown(f"""
+                    <div class='activity-item'>
+                        <span class='activity-name'>{key}</span>
+                        <span class='activity-count'>{value}</span>
+                    </div>
+                """, unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
         else:
-            st.markdown("<div style='text-align: center; opacity: 0.7;'>No pirot values available</div>", unsafe_allow_html=True)
+            st.markdown("<div class='activities-container'>No pirot values available</div>", unsafe_allow_html=True)
         st.markdown("</div>", unsafe_allow_html=True)
 
         # End employee card
@@ -649,7 +657,7 @@ def calculate_payments():
         st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
         st.markdown("---")
-        st.markdown("**App Version: 2.3.1**")
+        st.markdown("**App Version: 2.4**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
