@@ -303,14 +303,6 @@ class Employee:
         # Key metrics in a compact grid layout - reordered as requested
         st.markdown("<div class='info-grid'>", unsafe_allow_html=True)
         
-        # Name (Employee name)
-        st.markdown(f"""
-            <div class='info-item'>
-                <div class='info-label'>👤 Name</div>
-                <div class='info-value'>{self.name}</div>
-            </div>
-        """, unsafe_allow_html=True)
-        
         # Walking numbers
         st.markdown(f"""
             <div class='info-item'>
