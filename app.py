@@ -28,8 +28,9 @@ class Employee:
         self.JSON = self.json()
 
     def calculate_walking_numbers(self):
+        # Remove both NaN values and 'nan' strings
         dog_names = self.df['dog name'].dropna()
-        len(dog_names)
+        dog_names = dog_names[dog_names != 'nan']  # Remove 'nan' strings
         return len(dog_names)
 
     def calculate_yami_mismeret(self):
@@ -455,7 +456,6 @@ def _normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-@st.cache_data(show_spinner=False)
 def _read_excel(uploaded_file) -> pd.DataFrame:
     df = pd.read_excel(uploaded_file, engine='openpyxl')
     df = _normalize_columns(df)
