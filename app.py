@@ -186,7 +186,7 @@ class Employee:
                 text-align: center;
             }
             .info-label {
-                font-size: 13px;
+                font-size: 16px;
                 font-weight: 700;
                 text-transform: uppercase;
                 letter-spacing: 0.3px;
@@ -640,7 +640,7 @@ def calculate_payments():
         st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
         st.markdown("---")
-        st.markdown("**App Version: 2.1.1**")
+        st.markdown("**App Version: 2.1.2**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
