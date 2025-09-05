@@ -150,101 +150,263 @@ class Employee:
         return output
 
     def display_employee(self):
-        # Custom CSS for consistent styling including new divider
+        # Compact and readable CSS styling
         st.markdown("""
             <style>
-            .employee-detail {
-                font-family: 'IBM Plex Mono', monospace;
-                font-size: 16px;
-                margin: 4px 0;
-            }
-            .section-header {
-                font-family: 'IBM Plex Mono', monospace;
-                font-size: 20px;
-                font-weight: bold;
-                margin: 16px 0 8px 0;
-            }
-            .payment-display {
-                font-family: 'IBM Plex Mono', monospace;
-                font-size: 18px;
-                font-weight: bold;
+            .employee-card {
+                background: #f8f9fa;
+                border: 1px solid #e9ecef;
+                border-radius: 8px;
                 padding: 8px;
-                border-radius: 4px;
+                margin: 8px 0;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+                color: #212529;
+            }
+            .employee-header {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 16px;
+                font-weight: 700;
+                margin-bottom: 8px;
+                text-align: center;
+                color: #495057;
+                border-bottom: 1px solid #dee2e6;
+                padding-bottom: 4px;
+            }
+            .info-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 6px;
                 margin: 8px 0;
             }
-            .employee-divider {
-                background: linear-gradient(to right, #f0f2f6, #4CAF50, #f0f2f6);
-                height: 3px;
-                margin: 30px 0;
-                border-radius: 2px;
+            .info-item {
+                background: #ffffff;
+                padding: 6px;
+                border-radius: 6px;
+                border: 1px solid #dee2e6;
+                text-align: center;
             }
-
+            .info-label {
+                font-size: 9px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+                color: #6c757d;
+                margin-bottom: 2px;
+            }
+            .info-value {
+                font-size: 14px;
+                font-weight: 700;
+                color: #212529;
+            }
+            .section-title {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 12px;
+                font-weight: 600;
+                margin: 8px 0 4px 0;
+                color: #495057;
+                border-bottom: 1px solid #dee2e6;
+                padding-bottom: 2px;
+            }
+            .activities-container {
+                background: #ffffff;
+                padding: 6px;
+                border-radius: 6px;
+                margin: 6px 0;
+                border: 1px solid #dee2e6;
+            }
+            .activity-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 3px 0;
+                border-bottom: 1px solid #f8f9fa;
+            }
+            .activity-item:last-child {
+                border-bottom: none;
+            }
+            .activity-name {
+                font-size: 12px;
+                font-weight: 500;
+                color: #495057;
+            }
+            .activity-count {
+                background: #28a745;
+                color: white;
+                padding: 1px 6px;
+                border-radius: 8px;
+                font-size: 10px;
+                font-weight: 600;
+            }
+            .payment-card {
+                background: linear-gradient(135deg, #28a745, #20c997);
+                padding: 8px;
+                border-radius: 6px;
+                text-align: center;
+                margin: 8px 0;
+                box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+            }
+            .payment-amount {
+                font-size: 18px;
+                font-weight: 800;
+                color: white;
+                margin: 2px 0;
+            }
+            .payment-label {
+                font-size: 11px;
+                font-weight: 600;
+                color: white;
+                opacity: 0.9;
+            }
+            .status-badges {
+                display: flex;
+                gap: 4px;
+                margin: 6px 0;
+                flex-wrap: wrap;
+            }
+            .status-badge {
+                padding: 2px 8px;
+                border-radius: 10px;
+                font-size: 10px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.3px;
+            }
+            .badge-yes {
+                background: #28a745;
+                color: white;
+            }
+            .badge-no {
+                background: #dc3545;
+                color: white;
+            }
+            .pirot-section {
+                background: #ffffff;
+                padding: 6px;
+                border-radius: 6px;
+                margin: 6px 0;
+                border: 1px solid #dee2e6;
+            }
+            .employee-divider {
+                background: linear-gradient(to right, transparent, #6c757d, transparent);
+                height: 1px;
+                margin: 10px 0;
+            }
             </style>
         """, unsafe_allow_html=True)
 
-        # Start employee container
-        st.markdown("<div class='employee-container'>", unsafe_allow_html=True)
+        # Start employee card
+        st.markdown("<div class='employee-card'>", unsafe_allow_html=True)
 
-        # Header
-        st.markdown(f"<div class='section-header'>Employee Details for: {self.name}</div>", unsafe_allow_html=True)
+        # Header with employee name
+        st.markdown(f"<div class='employee-header'>👤 {self.name}</div>", unsafe_allow_html=True)
 
-        # General Information
-        st.markdown("<div class='section-header'>General Information</div>", unsafe_allow_html=True)
+        # Key metrics in a compact grid layout
+        st.markdown("<div class='info-grid'>", unsafe_allow_html=True)
+        
+        # Walking numbers
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>🐕 Walking Numbers</div>
+                <div class='info-value'>{self.walking_numbers}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Days worked
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>📅 Days Worked</div>
+                <div class='info-value'>{self.days_worked}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Travel days
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>🚗 Travel Days</div>
+                <div class='info-value'>{self.travel_days}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Yami mismeret
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>🌙 Yami Mismeret</div>
+                <div class='info-value'>{self.yami_mismeret}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Additional charge
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>➕ Additional Charge</div>
+                <div class='info-value'>₪{self.additional_charge}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Monthly free status
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>💳 Monthly Free</div>
+                <div class='info-value'>{'Yes' if self.has_monthly_free else 'No'}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Anan status
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>👤 Anan</div>
+                <div class='info-value'>{'Yes' if self.anan else 'No'}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("</div>", unsafe_allow_html=True)
 
-        # Display all metrics with consistent styling
-        metrics = [
-            f"Walking numbers: {self.walking_numbers}",
-            f"Yami mismeret: {self.yami_mismeret}",
-            f"Number of travel days: {self.travel_days}",
-            f"Number of days worked: {self.days_worked}",
-            f"Additional charge: {self.additional_charge}"
-        ]
-
-        for metric in metrics:
-            st.markdown(f"<div class='employee-detail'>{metric}</div>", unsafe_allow_html=True)
-
-        # Additional Activity Section
+        # Additional Activities Section
         has_additional_activity = not self.additional_activity.empty or self.tutor > 0
-        st.markdown(
-            f"<div class='employee-detail'>Additional Activity: {'Yes' if has_additional_activity else 'No'}</div>",
-            unsafe_allow_html=True)
-
+        st.markdown("<div class='section-title'>🎯 Additional Activities</div>", unsafe_allow_html=True)
+        
         if has_additional_activity:
-            st.markdown("<div class='employee-detail'>Activities breakdown:</div>", unsafe_allow_html=True)
+            st.markdown("<div class='activities-container'>", unsafe_allow_html=True)
             # Display regular additional activities
             if not self.additional_activity.empty:
                 for activity, count in self.additional_activity.items():
-                    st.markdown(f"<div class='employee-detail'>• {activity}: {count} times</div>",
-                                unsafe_allow_html=True)
+                    st.markdown(f"""
+                        <div class='activity-item'>
+                            <span class='activity-name'>{activity}</span>
+                            <span class='activity-count'>{count} times</span>
+                        </div>
+                    """, unsafe_allow_html=True)
 
             # Display tutor activities
             if self.tutor > 0:
-                st.markdown(f"<div class='employee-detail'>• Tutor: {self.tutor} </div>",
-                            unsafe_allow_html=True)
+                st.markdown(f"""
+                    <div class='activity-item'>
+                        <span class='activity-name'>Tutor</span>
+                        <span class='activity-count'>{self.tutor}</span>
+                    </div>
+                """, unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+        else:
+            st.markdown("<div class='activities-container'>No additional activities</div>", unsafe_allow_html=True)
 
-        # Payment display with color and employee name
-        payment_color = "red" if self.payment >= 1000 else "orange" if self.payment >= 500 else "green"
-        st.markdown(
-            f"""<div class='payment-display' style='background-color: {payment_color}; color: white;'>
-                Payment for {self.name}: ₪{self.payment:.2f}
-            </div>""",
-            unsafe_allow_html=True
-        )
-
-        # Other details
-        st.markdown(f"<div class='employee-detail'>Has monthly free: {self.has_monthly_free}</div>",
-                    unsafe_allow_html=True)
-        st.markdown(f"<div class='employee-detail'>Anan: {'True' if self.anan else 'False'}</div>",
-                    unsafe_allow_html=True)
+        # Payment display
+        st.markdown(f"""
+            <div class='payment-card'>
+                <div class='payment-label'>Total Payment for {self.name}</div>
+                <div class='payment-amount'>₪{self.payment:.2f}</div>
+            </div>
+        """, unsafe_allow_html=True)
 
         # Pirot Information
-        st.markdown("<div class='section-header'>Pirot Information</div>", unsafe_allow_html=True)
+        st.markdown("<div class='section-title'>📊 Pirot Information</div>", unsafe_allow_html=True)
+        st.markdown("<div class='pirot-section'>", unsafe_allow_html=True)
         if not self.pirot.empty:
             st.write(self.pirot.to_frame())
         else:
-            st.markdown("<div class='employee-detail'>There are no pirot values.</div>", unsafe_allow_html=True)
+            st.markdown("<div style='text-align: center; opacity: 0.7;'>No pirot values available</div>", unsafe_allow_html=True)
+        st.markdown("</div>", unsafe_allow_html=True)
 
-        # End employee container
+        # End employee card
         st.markdown("</div>", unsafe_allow_html=True)
 
         # Add gradient divider after each employee
@@ -476,9 +638,9 @@ def calculate_payments():
     with st.sidebar:
         st.header("Settings")
         st.markdown("---")
-        st.markdown("**App Version: 2.0**")
-        st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
+        st.markdown("---")
+        st.markdown("**App Version: 2.0**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
