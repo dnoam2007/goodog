@@ -335,11 +335,12 @@ class Employee:
             </div>
         """, unsafe_allow_html=True)
         
-        # Days worked
+        # Days without travel (days worked - travel days) - after travel days
+        days_without_travel = self.days_worked - self.travel_days
         st.markdown(f"""
             <div class='info-item'>
-                <div class='info-label'>📅 Days Worked</div>
-                <div class='info-value'>{self.days_worked}</div>
+                <div class='info-label'>🏠 Days Without Travel</div>
+                <div class='info-value'>{days_without_travel}</div>
             </div>
         """, unsafe_allow_html=True)
         
@@ -359,20 +360,19 @@ class Employee:
             </div>
         """, unsafe_allow_html=True)
         
+        # Days worked - after monthly free
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>📅 Days Worked</div>
+                <div class='info-value'>{self.days_worked}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
         # Anan status
         st.markdown(f"""
             <div class='info-item'>
                 <div class='info-label'>👤 Anan</div>
                 <div class='info-value'>{'Yes' if self.anan else 'No'}</div>
-            </div>
-        """, unsafe_allow_html=True)
-        
-        # Days without travel (days worked - travel days)
-        days_without_travel = self.days_worked - self.travel_days
-        st.markdown(f"""
-            <div class='info-item'>
-                <div class='info-label'>🏠 Days Without Travel</div>
-                <div class='info-value'>{days_without_travel}</div>
             </div>
         """, unsafe_allow_html=True)
         
@@ -657,7 +657,7 @@ def calculate_payments():
         st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
         st.markdown("---")
-        st.markdown("**App Version: 2.3**")
+        st.markdown("**App Version: 2.3.1**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
