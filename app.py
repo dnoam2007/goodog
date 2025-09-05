@@ -300,8 +300,16 @@ class Employee:
         # Header with employee name
         st.markdown(f"<div class='employee-header'>👤 {self.name}</div>", unsafe_allow_html=True)
 
-        # Key metrics in a compact grid layout
+        # Key metrics in a compact grid layout - reordered as requested
         st.markdown("<div class='info-grid'>", unsafe_allow_html=True)
+        
+        # Name (Employee name)
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>👤 Name</div>
+                <div class='info-value'>{self.name}</div>
+            </div>
+        """, unsafe_allow_html=True)
         
         # Walking numbers
         st.markdown(f"""
@@ -311,11 +319,11 @@ class Employee:
             </div>
         """, unsafe_allow_html=True)
         
-        # Days worked
+        # Yami mismeret
         st.markdown(f"""
             <div class='info-item'>
-                <div class='info-label'>📅 Days Worked</div>
-                <div class='info-value'>{self.days_worked}</div>
+                <div class='info-label'>🌙 Yami Mismeret</div>
+                <div class='info-value'>{self.yami_mismeret}</div>
             </div>
         """, unsafe_allow_html=True)
         
@@ -327,11 +335,11 @@ class Employee:
             </div>
         """, unsafe_allow_html=True)
         
-        # Yami mismeret
+        # Days worked
         st.markdown(f"""
             <div class='info-item'>
-                <div class='info-label'>🌙 Yami Mismeret</div>
-                <div class='info-value'>{self.yami_mismeret}</div>
+                <div class='info-label'>📅 Days Worked</div>
+                <div class='info-value'>{self.days_worked}</div>
             </div>
         """, unsafe_allow_html=True)
         
@@ -356,6 +364,15 @@ class Employee:
             <div class='info-item'>
                 <div class='info-label'>👤 Anan</div>
                 <div class='info-value'>{'Yes' if self.anan else 'No'}</div>
+            </div>
+        """, unsafe_allow_html=True)
+        
+        # Days without travel (days worked - travel days)
+        days_without_travel = self.days_worked - self.travel_days
+        st.markdown(f"""
+            <div class='info-item'>
+                <div class='info-label'>🏠 Days Without Travel</div>
+                <div class='info-value'>{days_without_travel}</div>
             </div>
         """, unsafe_allow_html=True)
         
@@ -640,7 +657,7 @@ def calculate_payments():
         st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
         st.markdown("---")
-        st.markdown("**App Version: 2.2**")
+        st.markdown("**App Version: 2.3**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
