@@ -164,7 +164,7 @@ class Employee:
             }
             .employee-header {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 20px;
+                font-size: 24px;
                 font-weight: 800;
                 margin-bottom: 8px;
                 text-align: center;
@@ -186,7 +186,7 @@ class Employee:
                 text-align: center;
             }
             .info-label {
-                font-size: 11px;
+                font-size: 13px;
                 font-weight: 700;
                 text-transform: uppercase;
                 letter-spacing: 0.3px;
@@ -194,13 +194,13 @@ class Employee:
                 margin-bottom: 2px;
             }
             .info-value {
-                font-size: 16px;
+                font-size: 20px;
                 font-weight: 800;
                 color: #212529;
             }
             .section-title {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: 700;
                 margin: 8px 0 4px 0;
                 color: #495057;
@@ -225,7 +225,7 @@ class Employee:
                 border-bottom: none;
             }
             .activity-name {
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: 600;
                 color: #495057;
             }
@@ -234,7 +234,7 @@ class Employee:
                 color: white;
                 padding: 1px 6px;
                 border-radius: 8px;
-                font-size: 12px;
+                font-size: 14px;
                 font-weight: 700;
             }
             .payment-card {
@@ -246,13 +246,13 @@ class Employee:
                 box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
             }
             .payment-amount {
-                font-size: 22px;
+                font-size: 28px;
                 font-weight: 900;
                 color: white;
                 margin: 2px 0;
             }
             .payment-label {
-                font-size: 13px;
+                font-size: 15px;
                 font-weight: 700;
                 color: white;
                 opacity: 0.9;
@@ -640,7 +640,7 @@ def calculate_payments():
         st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
         st.markdown("---")
-        st.markdown("**App Version: 2.1**")
+        st.markdown("**App Version: 2.1.1**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
