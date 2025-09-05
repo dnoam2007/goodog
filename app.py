@@ -559,7 +559,7 @@ class Client:
 def calculate_employee_payments_for_debug1(excel_file):
     # load the excel file
     df = pd.read_excel(excel_file)
-    columns = {'תאריך': 'Date', 'שם': 'Name', 'מתלמד': 'Apprentice', 'תגמול משמרות': 'Shift compensation',
+    columns = {'תאריך': 'Date', 'שם': 'Name', 'מתלמד': 'Apprentice', 'תגמול משמרת': 'Shift compensation',
                'שם הכלב': 'Dog name', 'מחיר ללקוח': 'Price to customer',
                'תשלום למ.ש': 'Payment to service recipients',
                'הצמדה': 'Link', 'פעילות נוספת': 'Additional activity', 'חונך': 'Tutor', 'הערות': 'Comments',
@@ -582,7 +582,7 @@ def _normalize_columns(df: pd.DataFrame) -> pd.DataFrame:
         'תאריך': 'Date',
         'שם': 'Name',
         'מתלמד': 'Apprentice',
-        'תגמול משמרות': 'Shift compensation',
+        'תגמול משמרת': 'Shift compensation',
         'שם הכלב': 'Dog name',
         'מחיר ללקוח': 'Price to customer',
         'תשלום למ.ש': 'Payment to service recipients',
@@ -640,7 +640,7 @@ def calculate_payments():
         st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
         st.markdown("---")
-        st.markdown("**App Version: 2.1.2**")
+        st.markdown("**App Version: 2.2**")
 
         # Configurable parameters
         global shift_compensation, single_bus_ticket_price, monthly_free_threshold_days, monthly_free_amount
@@ -746,7 +746,7 @@ def calculate_payments():
 def calculate_employee_payments_for_debug(uploaded_file):
     if uploaded_file is not None:
         df = pd.read_excel(uploaded_file)
-        columns = {'תאריך': 'Date', 'שם': 'Name', 'מתלמד': 'Apprentice', 'תגמול משמרות': 'Shift compensation',
+        columns = {'תאריך': 'Date', 'שם': 'Name', 'מתלמד': 'Apprentice', 'תגמול משמרת': 'Shift compensation',
                    'שם הכלב': 'Dog name', 'מחיר ללקוח': 'Price to customer',
                    'תשלום למ.ש': 'Payment to service recipients',
                    'הצמדה': 'Link', 'פעילות נוספת': 'Additional activity', 'חונך': 'Tutor', 'הערות': 'Comments',
