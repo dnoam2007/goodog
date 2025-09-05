@@ -475,6 +475,9 @@ def calculate_payments():
     st.title("Goodog — Payroll and Clients Dashboard 🐕")
     with st.sidebar:
         st.header("Settings")
+        st.markdown("---")
+        st.markdown("**App Version: 2.0**")
+        st.markdown("---")
         uploaded_file = st.file_uploader("Upload Excel (.xlsx)", type='xlsx')
 
         # Configurable parameters
